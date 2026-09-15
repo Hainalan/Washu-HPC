@@ -1,0 +1,35 @@
+# Interactive job
+srun -p general-cpu -c 4 -J my_job_name -A engr-lab-piname --pty /bin/bash
+
+#Submit job --create a job script --sbatch
+#!/bin/bash
+#SBATCH -p general-cpu
+#SBATCH -A engr-lab-piname
+#SBATCH -c 8
+#SBATCH -N 1
+#SBATCH -J my_job_name
+#SBATCH --output=log_%j.txt
+#SBATCH --error=err_%j.txt
+#SBATCH --mail-type=ALL
+
+echo Running on host: $hostname
+cd /engrfs/project/piname/my_work
+./my_program 
+
+#When installing new software like GNINA using apptainer to pull the environment
+#Clearify the working directory
+#!/bin/bash
+#SBATCH -p general-cpu
+#SBATCH -A engr-lab-piname
+#SBATCH -c 8
+#SBATCH -N 1
+#SBATCH -J my_job_name
+#SBATCH --output=log_%j.txt
+#SBATCH --error=err_%j.txt
+#SBATCH --mail-type=ALL
+
+echo Running on host: $hostname
+cd /engrfs/project/piname/my_work
+apptainer "working directory"/pull.gnina.sif docker://gnina/gnina:latest
+
+

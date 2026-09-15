@@ -1,0 +1,14 @@
+#Checking scripts
+cat -A "script file name"
+
+#Convert to right version
+dos2unix "script file name"
+
+# Move or copy file to current directory
+mv / cp "file path" ./
+
+# create a new sh file
+touch "file name.sh"
+
+#checking current job
+squene -u username
